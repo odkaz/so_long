@@ -6,7 +6,7 @@
 /*   By: knoda <knoda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 13:23:56 by knoda             #+#    #+#             */
-/*   Updated: 2021/11/14 14:57:11 by knoda            ###   ########.fr       */
+/*   Updated: 2021/11/15 19:57:50 by knoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,18 @@ void	exit_error(char *msg)
 	exit(1);
 }
 
-void	print_map(char **map)
+void	print_map(t_map map)
 {
-	while (*map)
+	char	**grid;
+
+	printf("w = %d\n", map.w);
+	printf("h = %d\n", map.h);
+	grid = map.grid;
+	while (*grid)
 	{
         ft_putstr_fd("line = ", 1);
-		ft_putendl_fd(*map, 1);
-		map++;
+		ft_putendl_fd(*grid, 1);
+		grid++;
 	}
 }
 

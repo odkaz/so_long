@@ -6,7 +6,7 @@
 /*   By: knoda <knoda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 13:22:16 by knoda             #+#    #+#             */
-/*   Updated: 2021/11/15 15:39:39 by knoda            ###   ########.fr       */
+/*   Updated: 2021/11/16 16:33:21 by knoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,38 +78,121 @@ char	*read_all(char *path)
 	return (line);
 }
 
-void	set_map(char **map, char *line)
+void	set_grid(t_map *m, char *line)
 {
 	char	*p;
-	
+	int		i;
+
+	m->grid = (char **)my_calloc(m->h + 1, sizeof(char *));
 	p = line;
+	i = 0;
 	while (*p)
 	{
 		if (*p == '\n')
 		{
-			*map = ft_substr(line, 0, p - line);
-			map++;
+			m->grid[i] = ft_substr(line, 0, p - line);
+			i++;
 			line = p + 1;
 		}
 		p++;
 	}
 	if (p - line > 0)
 	{
-		*map = ft_substr(line, 0, p - line);
-		map++;
+		m->grid[i] = ft_substr(line, 0, p - line);
+		i++;
 	}
-	*map = NULL;
+	m->grid[i] = NULL;
 }
 
-char	**parse(char *path)
+char	**get_grid(t_map map, char *line)
+{
+	char	*p;
+	char	**grid;
+	char	**ret;
+
+	grid = (char **)my_calloc(map.h + 1, sizeof(char *));
+	ret = grid;
+	// printf("ret in = %s\n", *ret);
+	p = line;
+	while (*p)
+	{
+		if (*p == '\n')
+		{
+			*grid = ft_substr(line, 0, p - line);
+			grid++;
+			line = p + 1;
+		}
+		p++;
+	}
+	if (p - line > 0)
+	{
+		*grid = ft_substr(line, 0, p - line);
+		grid++;
+	}
+	*grid = NULL;
+	return (ret);
+}
+
+// char	**parse(char *path)
+// {
+// 	char	*line;
+// 	char	**m;
+// 	int		i;
+	
+// 	line = read_all(path);
+// 	m = (char **)my_calloc(100, sizeof(char *));
+// 	i = 0;
+// 	set_map(m, line);
+// 	return (m);
+// }
+
+int	width_count(char *line)
+{
+	int		w;
+
+	w = 0;
+	while (line[w])
+	{
+		if (line[w] == '\n')
+			break ;
+		w++;
+	}
+	return (w);
+}
+
+int	height_count(char *line)
+{
+	int		w;
+	int		h;
+	
+	h = 0;
+	if (*line)
+		w = width_count(line);
+	else
+		exit_error("map is invalid");
+	while (*line)
+	{
+		if (*line == '\n')
+			line++;
+		if (w != width_count(line))
+			exit_error("the map should be rectangular");
+		if (w)
+		{
+			line += w;
+			h++;
+		}
+	}
+	return (h);
+}
+
+t_map	*parse(char *path, t_map *map)
 {
 	char	*line;
-	char	**m;
-	int		i;
-	
+
 	line = read_all(path);
-	m = (char **)my_calloc(100, sizeof(char *));
-	i = 0;
-	set_map(m, line);
-	return (m);
+	(*map).w = width_count(line);
+	(*map).h = height_count(line);
+	// (*map).grid = get_grid(*map, line);
+	set_grid(map, line);
+	return (map);
 }
