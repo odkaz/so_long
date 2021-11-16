@@ -6,7 +6,7 @@
 /*   By: knoda <knoda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 13:22:16 by knoda             #+#    #+#             */
-/*   Updated: 2021/11/16 16:33:21 by knoda            ###   ########.fr       */
+/*   Updated: 2021/11/16 20:47:35 by knoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,46 +104,33 @@ void	set_grid(t_map *m, char *line)
 	m->grid[i] = NULL;
 }
 
-char	**get_grid(t_map map, char *line)
-{
-	char	*p;
-	char	**grid;
-	char	**ret;
-
-	grid = (char **)my_calloc(map.h + 1, sizeof(char *));
-	ret = grid;
-	// printf("ret in = %s\n", *ret);
-	p = line;
-	while (*p)
-	{
-		if (*p == '\n')
-		{
-			*grid = ft_substr(line, 0, p - line);
-			grid++;
-			line = p + 1;
-		}
-		p++;
-	}
-	if (p - line > 0)
-	{
-		*grid = ft_substr(line, 0, p - line);
-		grid++;
-	}
-	*grid = NULL;
-	return (ret);
-}
-
-// char	**parse(char *path)
+// char	**get_grid(t_map map, char *line)
 // {
-// 	char	*line;
-// 	char	**m;
-// 	int		i;
-	
-// 	line = read_all(path);
-// 	m = (char **)my_calloc(100, sizeof(char *));
-// 	i = 0;
-// 	set_map(m, line);
-// 	return (m);
+// 	char	*p;
+// 	char	**grid;
+// 	char	**ret;
+
+// 	grid = (char **)my_calloc(map.h + 1, sizeof(char *));
+// 	ret = grid;
+// 	// printf("ret in = %s\n", *ret);
+// 	p = line;
+// 	while (*p)
+// 	{
+// 		if (*p == '\n')
+// 		{
+// 			*grid = ft_substr(line, 0, p - line);
+// 			grid++;
+// 			line = p + 1;
+// 		}
+// 		p++;
+// 	}
+// 	if (p - line > 0)
+// 	{
+// 		*grid = ft_substr(line, 0, p - line);
+// 		grid++;
+// 	}
+// 	*grid = NULL;
+// 	return (ret);
 // }
 
 int	width_count(char *line)

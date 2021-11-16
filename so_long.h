@@ -11,20 +11,20 @@
 #include "minilibx_opengl_20191021/mlx.h"
 #include "minilibx_opengl_20191021/mlx_png.h"
 
-
-typedef struct	s_mlx_data {
-	void		*mlx;
-	void		*mlx_win;
-	void		*img;
-	int			img_width;
-	int			img_height;
-}				t_mlx_data;
-
 typedef struct	s_map {
 	char	**grid;
 	int		w;
 	int		h;
 }				t_map;
+
+typedef struct	s_mlx_data {
+	void		*mlx;
+	void		*win;
+	void		*img;
+	t_map		map;
+	int			p_x;
+	int			p_y;
+}				t_mlx_data;
 
 
 
@@ -35,5 +35,10 @@ t_map	*parse(char *path, t_map *map);
 
 #define BUFFER_SIZE 1024
 #define IMG_PIXELS 32
+#define KEY_W 13
+#define KEY_A 0
+#define KEY_S 1
+#define KEY_D 2
+#define KEY_ESC 53
 
 #endif
