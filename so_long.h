@@ -32,6 +32,12 @@ void	exit_error(char *msg);
 void	print_map(t_map map);
 void	*my_calloc(size_t n, size_t size);
 t_map	*parse(char *path, t_map *map);
+void	put_backgroud(t_map map);
+void	*xpm_to_img(char *path, t_mlx_data data);
+void	*get_img(char c, t_mlx_data data);
+int		exit_hook(int keycode, t_mlx_data *data);
+int		key_hook(int keycode, t_mlx_data *data);
+
 
 #define BUFFER_SIZE 1024
 #define IMG_PIXELS 32
