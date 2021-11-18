@@ -6,16 +6,16 @@
 /*   By: knoda <knoda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 17:58:36 by knoda             #+#    #+#             */
-/*   Updated: 2021/11/17 18:08:50 by knoda            ###   ########.fr       */
+/*   Updated: 2021/11/18 17:30:06 by knoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void    check_walls(t_map map)
+void	check_walls(t_map map)
 {
-	int     x;
-	int     y;
+	int	x;
+	int	y;
 
 	y = 0;
 	while (y < map.h)
@@ -52,13 +52,11 @@ void	check_grid(t_map map)
 {
 	int		x;
 	int		y;
-	int		flag_P;
-	int		flag_C;
-	int		flag_E;
+	t_flag	flag;
 
-	flag_P = 0;
-	flag_C = 0;
-	flag_E = 0;
+	flag.p = 0;
+	flag.c = 0;
+	flag.e = 0;
 	y = 0;
 	while (y < map.h)
 	{
@@ -66,14 +64,14 @@ void	check_grid(t_map map)
 		while (x < map.w)
 		{
 			if (map.grid[y][x] == 'P')
-				flag_P++;
+				flag.p++;
 			if (map.grid[y][x] == 'C')
-				flag_C++;
+				flag.c++;
 			if (map.grid[y][x] == 'E')
-				flag_E++;
+				flag.e++;
 			x++;
 		}
 		y++;
 	}
-	check_flags(flag_P, flag_C, flag_E);
+	check_flags(flag.p, flag.c, flag.e);
 }

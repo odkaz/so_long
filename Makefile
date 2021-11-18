@@ -6,7 +6,7 @@
 #    By: knoda <knoda@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/13 18:37:49 by knoda             #+#    #+#              #
-#    Updated: 2021/11/17 17:59:27 by knoda            ###   ########.fr        #
+#    Updated: 2021/11/18 17:37:17 by knoda            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME := so_long
 CC := gcc
 CFLAGS := -Wall -Wextra -Werror
 LIBS := -L. -lmlx -framework OpenGL -framework AppKit -lft
-SRCS := main.c parse.c util.c put_background.c get_img.c hook.c check_grid.c
+SRCS := main.c parse.c util.c put_background.c get_img.c hook.c check_grid.c read_all.c set_grid.c
 OBJS := $(SRCS:.c=.o)
 
 $(NAME): $(OBJS)

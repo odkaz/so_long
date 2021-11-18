@@ -6,7 +6,7 @@
 /*   By: knoda <knoda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 14:31:09 by knoda             #+#    #+#             */
-/*   Updated: 2021/11/17 17:06:57 by knoda            ###   ########.fr       */
+/*   Updated: 2021/11/18 17:25:46 by knoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,34 @@
 
 void	*xpm_to_img(char *path, t_mlx_data data)
 {
-	int	img_width;
-	int	img_height;
-    void   *img;
+	int		img_width;
+	int		img_height;
+	void	*img;
 
-    img = mlx_xpm_file_to_image(data.mlx, path, &img_width, &img_height);
-    if (!img)
-        exit_error("xpm_to_img : img not found");
+	img = mlx_xpm_file_to_image(data.mlx, path, &img_width, &img_height);
+	if (!img)
+		exit_error("xpm_to_img : img not found");
 	return (img);
+}
+
+char	*get_img_path(char c)
+{
+	if (c == '1')
+		return ("./srcs/bush.xpm");
+	else if (c == 'E')
+		return ("./srcs/exit.xpm");
+	else if (c == 'C')
+		return ("./srcs/treasure.xpm");
+	else if (c == 'P')
+		return ("./srcs/player.xpm");
+	exit_error("get_img_path: no path found");
+	return (NULL);
 }
 
 void	*get_img(char c, t_mlx_data data)
 {
 	void	*img;
-	
+
 	img = NULL;
 	if (c == '1')
 		img = xpm_to_img("./srcs/bush.xpm", data);

@@ -6,7 +6,7 @@
 /*   By: knoda <knoda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 14:32:16 by knoda             #+#    #+#             */
-/*   Updated: 2021/11/17 16:33:44 by knoda            ###   ########.fr       */
+/*   Updated: 2021/11/18 17:07:27 by knoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	finish_game(t_mlx_data *data)
 
 int	check_space(t_map map, int x, int y, t_mlx_data *data)
 {
-	// printf("check x = %d, y = %d, grid = %c\n", x, y, map.grid[1][3]);
 	if (x < 0 || x > map.w || y < 0 || y > map.h)
 		return (0);
 	if (map.grid[y][x] == '0')
@@ -47,7 +46,7 @@ int	check_space(t_map map, int x, int y, t_mlx_data *data)
 	return (0);
 }
 
-void    move_player(t_mlx_data *data, int x, int y)
+void	move_player(t_mlx_data *data, int x, int y)
 {
 	void	*img;
 
@@ -55,30 +54,35 @@ void    move_player(t_mlx_data *data, int x, int y)
 	printf("total moves : %d\n", data->moves);
 	data->map.grid[data->p_y][data->p_x] = '0';
 	img = xpm_to_img("./srcs/ground.xpm", *data);
-	mlx_put_image_to_window(data->mlx, data->win, img, IMG_PIXELS * data->p_x, IMG_PIXELS * data->p_y);
+	mlx_put_image_to_window(data->mlx, data->win, img, \
+	IMG_PIXELS * data->p_x, IMG_PIXELS * data->p_y);
 	data->map.grid[y][x] = 'P';
 	img = xpm_to_img("./srcs/player.xpm", *data);
-	mlx_put_image_to_window(data->mlx, data->win, img, IMG_PIXELS * x, IMG_PIXELS * y);
+	mlx_put_image_to_window(data->mlx, data->win, img, \
+	IMG_PIXELS * x, IMG_PIXELS * y);
 	data->p_x = x;
 	data->p_y = y;
-
 }
 
 int	key_hook(int keycode, t_mlx_data *data)
 {
-	if (keycode == KEY_W && check_space(data->map, data->p_x, data->p_y - 1, data))
+	if (keycode == KEY_W && check_space(data->map, \
+	data->p_x, data->p_y - 1, data))
 	{
 		move_player(data, data->p_x, data->p_y - 1);
 	}
-	if (keycode == KEY_A && check_space(data->map, data->p_x - 1, data->p_y, data))
+	if (keycode == KEY_A && check_space(data->map, \
+	data->p_x - 1, data->p_y, data))
 	{
 		move_player(data, data->p_x - 1, data->p_y);
 	}
-	if (keycode == KEY_S && check_space(data->map, data->p_x, data->p_y + 1, data))
+	if (keycode == KEY_S && check_space(data->map, \
+	data->p_x, data->p_y + 1, data))
 	{
 		move_player(data, data->p_x, data->p_y + 1);
 	}
-	if (keycode == KEY_D && check_space(data->map, data->p_x + 1, data->p_y, data))
+	if (keycode == KEY_D && check_space(data->map, \
+	data->p_x + 1, data->p_y, data))
 	{
 		move_player(data, data->p_x + 1, data->p_y);
 	}
@@ -86,5 +90,5 @@ int	key_hook(int keycode, t_mlx_data *data)
 	{
 		exit(0);
 	}
-	return(0);
+	return (0);
 }
