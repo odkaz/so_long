@@ -6,13 +6,13 @@
 /*   By: knoda <knoda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 14:29:36 by knoda             #+#    #+#             */
-/*   Updated: 2021/11/17 14:33:45 by knoda            ###   ########.fr       */
+/*   Updated: 2021/11/17 17:07:21 by knoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	set_mlx(t_mlx_data *data, t_map map)
+void	set_data(t_mlx_data *data, t_map map)
 {
 	int		res_x;
 	int		res_y;
@@ -21,6 +21,11 @@ void	set_mlx(t_mlx_data *data, t_map map)
 	res_y = map.h * IMG_PIXELS;
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, res_x, res_y, "So_Long");
+    data->map = map;
+	data->p_x = -1;
+	data->p_y = -1;
+    data->collective = 0;
+    data->moves = 0;
 }
 
 void	init_player(t_mlx_data *data, int x, int y)
@@ -38,18 +43,12 @@ void	put_backgroud(t_map map)
 	t_mlx_data data;
 	void	*img;
 	void	*img2;
-	char	*bg_path = "./srcs/ground.xpm";
 	int		x;
 	int		y;
 	char	c;
 
-	data.map = map;
-	data.p_x = -1;
-	data.p_y = -1;
-	set_mlx(&data, map);
-	img = xpm_to_img(bg_path, data);
-	if (!img)
-		exit_error("no image found");
+	set_data(&data, map);
+	img = xpm_to_img("./srcs/ground.xpm", data);
 	y = 0;
 	while (y < map.h)
 	{

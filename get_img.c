@@ -6,7 +6,7 @@
 /*   By: knoda <knoda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 14:31:09 by knoda             #+#    #+#             */
-/*   Updated: 2021/11/17 14:31:22 by knoda            ###   ########.fr       */
+/*   Updated: 2021/11/17 17:06:57 by knoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,12 @@ void	*xpm_to_img(char *path, t_mlx_data data)
 {
 	int	img_width;
 	int	img_height;
-	
-	return (mlx_xpm_file_to_image(data.mlx, path, &img_width, &img_height));
+    void   *img;
+
+    img = mlx_xpm_file_to_image(data.mlx, path, &img_width, &img_height);
+    if (!img)
+        exit_error("xpm_to_img : img not found");
+	return (img);
 }
 
 void	*get_img(char c, t_mlx_data data)

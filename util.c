@@ -6,7 +6,7 @@
 /*   By: knoda <knoda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 13:23:56 by knoda             #+#    #+#             */
-/*   Updated: 2021/11/15 19:57:50 by knoda            ###   ########.fr       */
+/*   Updated: 2021/11/17 17:57:20 by knoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	exit_error(char *msg)
 {
 	ft_putstr_fd("Error : ", 2);
-	ft_putstr_fd(msg, 2);
+	ft_putendl_fd(msg, 2);
 	exit(1);
 }
 

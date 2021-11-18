@@ -24,9 +24,9 @@ typedef struct	s_mlx_data {
 	t_map		map;
 	int			p_x;
 	int			p_y;
+	int			collective;
+	int			moves;
 }				t_mlx_data;
-
-
 
 void	exit_error(char *msg);
 void	print_map(t_map map);
@@ -37,7 +37,8 @@ void	*xpm_to_img(char *path, t_mlx_data data);
 void	*get_img(char c, t_mlx_data data);
 int		exit_hook(int keycode, t_mlx_data *data);
 int		key_hook(int keycode, t_mlx_data *data);
-
+void    check_walls(t_map map);
+void	check_grid(t_map map);
 
 #define BUFFER_SIZE 1024
 #define IMG_PIXELS 32

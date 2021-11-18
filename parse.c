@@ -6,7 +6,7 @@
 /*   By: knoda <knoda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 13:22:16 by knoda             #+#    #+#             */
-/*   Updated: 2021/11/16 20:47:35 by knoda            ###   ########.fr       */
+/*   Updated: 2021/11/17 18:41:47 by knoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,25 @@ void	get_read(int fd, int *rv, char **line)
 	*rv = -1;
 }
 
+void		check_extension(char *path)
+{
+	int		i;
+	char	*dot;
+
+	i = 0;
+	while (path[i])
+		i++;
+	if (i < 4)
+		exit_error("check your .ber file path");
+	dot = ft_substr(path, i - 4, 4);
+	if (ft_strncmp(dot, ".ber", 4) != 0)
+	{
+		free(dot);
+		exit_error("the file should be .ber extension");
+	}
+	free(dot);
+}
+
 char	*read_all(char *path)
 {
 	int		rv;
@@ -64,9 +83,10 @@ char	*read_all(char *path)
 	int		fd;
 
 	rv = 0;
+	check_extension(path);
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		exit_error("check your .ber file path\n");
+		exit_error("check your .ber file path");
 	line = NULL;
 	while (rv != -1)
 	{
@@ -103,35 +123,6 @@ void	set_grid(t_map *m, char *line)
 	}
 	m->grid[i] = NULL;
 }
-
-// char	**get_grid(t_map map, char *line)
-// {
-// 	char	*p;
-// 	char	**grid;
-// 	char	**ret;
-
-// 	grid = (char **)my_calloc(map.h + 1, sizeof(char *));
-// 	ret = grid;
-// 	// printf("ret in = %s\n", *ret);
-// 	p = line;
-// 	while (*p)
-// 	{
-// 		if (*p == '\n')
-// 		{
-// 			*grid = ft_substr(line, 0, p - line);
-// 			grid++;
-// 			line = p + 1;
-// 		}
-// 		p++;
-// 	}
-// 	if (p - line > 0)
-// 	{
-// 		*grid = ft_substr(line, 0, p - line);
-// 		grid++;
-// 	}
-// 	*grid = NULL;
-// 	return (ret);
-// }
 
 int	width_count(char *line)
 {
@@ -179,7 +170,8 @@ t_map	*parse(char *path, t_map *map)
 	line = read_all(path);
 	(*map).w = width_count(line);
 	(*map).h = height_count(line);
-	// (*map).grid = get_grid(*map, line);
 	set_grid(map, line);
+	check_grid(*map);
+	check_walls(*map);
 	return (map);
 }
