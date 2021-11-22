@@ -6,7 +6,7 @@
 #    By: knoda <knoda@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/13 18:37:49 by knoda             #+#    #+#              #
-#    Updated: 2021/11/22 18:38:47 by knoda            ###   ########.fr        #
+#    Updated: 2021/11/22 18:57:40 by knoda            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,4 +38,9 @@ fclean: clean
 	$(CC) $(CFLAGS) -c $< -o $@
 	
 re: fclean all
+
+init:
+	git submodule init
+	git submodule update
+
 .PHONY: all clean fclean re .c.o
