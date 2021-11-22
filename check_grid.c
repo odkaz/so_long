@@ -6,7 +6,7 @@
 /*   By: knoda <knoda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 17:58:36 by knoda             #+#    #+#             */
-/*   Updated: 2021/11/22 19:12:24 by knoda            ###   ########.fr       */
+/*   Updated: 2021/11/22 19:24:17 by knoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	check_walls(t_map *map)
 			while (x < map->w)
 			{
 				if (map->grid[y][x] != '1')
-					exit_error("maps : the map should be surrounded by walls", map);
+					exit_error("maps : map should be surrounded by walls", map);
 				x++;
 			}
 		}
 		else if (map->grid[y][0] != '1' || map->grid[y][map->w - 1] != '1')
-			exit_error("maps : the map should be surrounded by walls", map);
+			exit_error("maps : map should be surrounded by walls", map);
 		y++;
 	}
 }
