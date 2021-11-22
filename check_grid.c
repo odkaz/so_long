@@ -6,7 +6,7 @@
 /*   By: knoda <knoda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 17:58:36 by knoda             #+#    #+#             */
-/*   Updated: 2021/11/18 17:30:06 by knoda            ###   ########.fr       */
+/*   Updated: 2021/11/22 15:23:41 by knoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	check_walls(t_map map)
 	}
 }
 
-void	check_flags(int	p, int c, int e)
+void	check_flags(int p, int c, int e)
 {
 	if (p == 0)
 		exit_error("maps : you have to declare the starting posisiton");
@@ -46,6 +46,18 @@ void	check_flags(int	p, int c, int e)
 		exit_error("maps : you need at least one collective");
 	if (e == 0)
 		exit_error("maps : you need at least one exit");
+}
+
+void	count_flags(t_flag *flag, char c)
+{
+	if (!ft_strchr("01PCE", c))
+		exit_error("maps : invalid character");
+	if (c == 'P')
+		(flag->p)++;
+	if (c == 'C')
+		(flag->c)++;
+	if (c == 'E')
+		(flag->e)++;
 }
 
 void	check_grid(t_map map)
@@ -63,12 +75,15 @@ void	check_grid(t_map map)
 		x = 0;
 		while (x < map.w)
 		{
-			if (map.grid[y][x] == 'P')
-				flag.p++;
-			if (map.grid[y][x] == 'C')
-				flag.c++;
-			if (map.grid[y][x] == 'E')
-				flag.e++;
+			count_flags(&flag, map.grid[y][x]);
+			// if (!ft_strchr("01PCE", map.grid[y][x]))
+			// 	exit_error("maps : invalid character");
+			// if (map.grid[y][x] == 'P')
+			// 	flag.p++;
+			// if (map.grid[y][x] == 'C')
+			// 	flag.c++;
+			// if (map.grid[y][x] == 'E')
+			// 	flag.e++;
 			x++;
 		}
 		y++;
