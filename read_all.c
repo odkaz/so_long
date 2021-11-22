@@ -6,7 +6,7 @@
 /*   By: knoda <knoda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 17:35:50 by knoda             #+#    #+#             */
-/*   Updated: 2021/11/18 17:36:00 by knoda            ###   ########.fr       */
+/*   Updated: 2021/11/22 18:36:32 by knoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ void	check_extension(char *path)
 	while (path[i])
 		i++;
 	if (i < 4)
-		exit_error("check your .ber file path");
+		exit_error("check your .ber file path", NULL);
 	dot = ft_substr(path, i - 4, 4);
 	if (ft_strncmp(dot, ".ber", 4) != 0)
 	{
 		free(dot);
-		exit_error("the file should be .ber extension");
+		exit_error("the file should be .ber extension", NULL);
 	}
 	free(dot);
 }
@@ -90,7 +90,7 @@ char	*read_all(char *path)
 	check_extension(path);
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		exit_error("check your .ber file path");
+		exit_error("check your .ber file path", NULL);
 	line = NULL;
 	while (rv != -1)
 	{

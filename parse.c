@@ -6,7 +6,7 @@
 /*   By: knoda <knoda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 13:22:16 by knoda             #+#    #+#             */
-/*   Updated: 2021/11/22 15:10:50 by knoda            ###   ########.fr       */
+/*   Updated: 2021/11/22 18:22:43 by knoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_map	*parse(char *path, t_map *map)
 	(*map).h = height_count(line);
 	set_grid(map, line);
 	free(line);
-	check_grid(*map);
-	check_walls(*map);
+	check_grid(map);
+	check_walls(map);
 	return (map);
 }

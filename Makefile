@@ -6,7 +6,7 @@
 #    By: knoda <knoda@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/13 18:37:49 by knoda             #+#    #+#              #
-#    Updated: 2021/11/18 17:37:17 by knoda            ###   ########.fr        #
+#    Updated: 2021/11/22 18:38:47 by knoda            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,11 +28,11 @@ all: $(NAME)
 clean:
 	$(MAKE) clean -C ./libft
 	$(MAKE) clean -C ./minilibx_opengl_20191021
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) libft.a libmlx.a
 	
 fclean: clean
 	$(MAKE) fclean -C ./libft
-	$(RM) $(NAME) libft.a libmlx.a
+	$(RM) $(NAME)
 
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@

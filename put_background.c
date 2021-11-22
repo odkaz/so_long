@@ -6,7 +6,7 @@
 /*   By: knoda <knoda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 14:29:36 by knoda             #+#    #+#             */
-/*   Updated: 2021/11/18 17:26:47 by knoda            ###   ########.fr       */
+/*   Updated: 2021/11/22 18:32:21 by knoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void	set_data(t_mlx_data *data, t_map map)
 
 void	init_player(t_mlx_data *data, int x, int y)
 {
-	if (data->p_x != -1 || data->p_y != -1)
-	{
-		exit_error("init_player : you can only place one player");
-	}
+	// if (data->p_x != -1 || data->p_y != -1)
+	// {
+	// 	exit_error("init_player : you can only place one player");
+	// }
 	data->p_x = x;
 	data->p_y = y;
 }

@@ -6,7 +6,7 @@
 /*   By: knoda <knoda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 14:31:09 by knoda             #+#    #+#             */
-/*   Updated: 2021/11/18 17:25:46 by knoda            ###   ########.fr       */
+/*   Updated: 2021/11/22 18:34:55 by knoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*xpm_to_img(char *path, t_mlx_data data)
 
 	img = mlx_xpm_file_to_image(data.mlx, path, &img_width, &img_height);
 	if (!img)
-		exit_error("xpm_to_img : img not found");
+		exit_error("xpm_to_img : img not found", NULL);
 	return (img);
 }
 
@@ -34,7 +34,7 @@ char	*get_img_path(char c)
 		return ("./srcs/treasure.xpm");
 	else if (c == 'P')
 		return ("./srcs/player.xpm");
-	exit_error("get_img_path: no path found");
+	exit_error("get_img_path: no path found", NULL);
 	return (NULL);
 }
 
@@ -53,7 +53,7 @@ void	*get_img(char c, t_mlx_data data)
 		img = xpm_to_img("./srcs/player.xpm", data);
 	else
 	{
-		exit_error("get_img: no character support");
+		exit_error("get_img: no character support", NULL);
 	}
 	return (img);
 }
