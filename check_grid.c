@@ -6,7 +6,7 @@
 /*   By: knoda <knoda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 17:58:36 by knoda             #+#    #+#             */
-/*   Updated: 2021/11/22 18:35:21 by knoda            ###   ########.fr       */
+/*   Updated: 2021/11/22 19:12:24 by knoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	check_flags(int p, int c, int e, t_map *map)
 		exit_error("maps : you need at least one collective", map);
 	if (e == 0)
 		exit_error("maps : you need at least one exit", map);
+	map->c_num = c;
 }
 
 void	count_flags(t_flag *flag, char c, t_map *map)

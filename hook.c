@@ -6,7 +6,7 @@
 /*   By: knoda <knoda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 14:32:16 by knoda             #+#    #+#             */
-/*   Updated: 2021/11/18 17:07:27 by knoda            ###   ########.fr       */
+/*   Updated: 2021/11/22 19:21:23 by knoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int	check_space(t_map map, int x, int y, t_mlx_data *data)
 	if (map.grid[y][x] == 'E')
 	{
 		data->moves += 1;
-		finish_game(data);
+		if (data->collective == map.c_num)
+			finish_game(data);
 		return (1);
 	}
 	return (0);
@@ -52,11 +53,19 @@ void	move_player(t_mlx_data *data, int x, int y)
 
 	data->moves += 1;
 	printf("total moves : %d\n", data->moves);
-	data->map.grid[data->p_y][data->p_x] = '0';
+	if (data->map.grid[data->p_y][data->p_x] != 'E')
+		data->map.grid[data->p_y][data->p_x] = '0';
 	img = xpm_to_img("./srcs/ground.xpm", *data);
 	mlx_put_image_to_window(data->mlx, data->win, img, \
 	IMG_PIXELS * data->p_x, IMG_PIXELS * data->p_y);
-	data->map.grid[y][x] = 'P';
+	if (data->map.grid[data->p_y][data->p_x] == 'E')
+	{
+		img = xpm_to_img("./srcs/exit.xpm", *data);
+		mlx_put_image_to_window(data->mlx, data->win, img, \
+		IMG_PIXELS * data->p_x, IMG_PIXELS * data->p_y);
+	}
+	if (data->map.grid[y][x] != 'E')
+		data->map.grid[y][x] = 'P';
 	img = xpm_to_img("./srcs/player.xpm", *data);
 	mlx_put_image_to_window(data->mlx, data->win, img, \
 	IMG_PIXELS * x, IMG_PIXELS * y);

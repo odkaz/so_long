@@ -6,7 +6,7 @@
 /*   By: knoda <knoda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 17:33:05 by knoda             #+#    #+#             */
-/*   Updated: 2021/11/22 18:32:26 by knoda            ###   ########.fr       */
+/*   Updated: 2021/11/22 19:10:00 by knoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_map {
 	char	**grid;
 	int		w;
 	int		h;
+	int		c_num;
 }				t_map;
 
 typedef struct s_flag {
