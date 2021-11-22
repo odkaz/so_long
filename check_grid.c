@@ -6,7 +6,7 @@
 /*   By: knoda <knoda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 17:58:36 by knoda             #+#    #+#             */
-/*   Updated: 2021/11/22 15:23:41 by knoda            ###   ########.fr       */
+/*   Updated: 2021/11/22 18:12:03 by knoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,6 @@ void	check_grid(t_map map)
 		while (x < map.w)
 		{
 			count_flags(&flag, map.grid[y][x]);
-			// if (!ft_strchr("01PCE", map.grid[y][x]))
-			// 	exit_error("maps : invalid character");
-			// if (map.grid[y][x] == 'P')
-			// 	flag.p++;
-			// if (map.grid[y][x] == 'C')
-			// 	flag.c++;
-			// if (map.grid[y][x] == 'E')
-			// 	flag.e++;
 			x++;
 		}
 		y++;
