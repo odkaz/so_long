@@ -6,19 +6,19 @@
 /*   By: knoda <knoda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 14:29:36 by knoda             #+#    #+#             */
-/*   Updated: 2021/11/22 18:51:44 by knoda            ###   ########.fr       */
+/*   Updated: 2021/11/25 14:00:08 by knoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	set_data(t_mlx_data *data, t_map map)
+void	set_data(t_mlx_data *data, t_map *map)
 {
 	int		res_x;
 	int		res_y;
 
-	res_x = map.w * IMG_PIXELS;
-	res_y = map.h * IMG_PIXELS;
+	res_x = map->w * IMG_PIXELS;
+	res_y = map->h * IMG_PIXELS;
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, res_x, res_y, "So_Long");
 	data->map = map;
@@ -43,7 +43,7 @@ void	put_img(t_mlx_data data, char *path, int x, int y)
 			img, IMG_PIXELS * x, IMG_PIXELS * y);
 }
 
-void	put_backgroud(t_map map)
+void	put_backgroud(t_map *map)
 {
 	t_mlx_data	data;
 	int			x;
@@ -52,13 +52,13 @@ void	put_backgroud(t_map map)
 
 	set_data(&data, map);
 	y = 0;
-	while (y < map.h)
+	while (y < map->h)
 	{
 		x = 0;
-		while (x < map.w)
+		while (x < map->w)
 		{
 			put_img(data, "./srcs/ground.xpm", x, y);
-			c = map.grid[y][x];
+			c = map->grid[y][x];
 			if (ft_strchr("1ECP", c))
 				put_img(data, get_img_path(c), x, y);
 			if (c == 'P')

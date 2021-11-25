@@ -6,30 +6,11 @@
 /*   By: knoda <knoda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 13:23:56 by knoda             #+#    #+#             */
-/*   Updated: 2021/11/22 19:23:52 by knoda            ###   ########.fr       */
+/*   Updated: 2021/11/22 19:27:54 by knoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	exit_error(char *msg, t_map *map)
-{
-	int		i;
-
-	if (map)
-	{
-		i = 0;
-		while (i < map->h)
-		{
-			free(map->grid[i]);
-			i++;
-		}
-		free(map->grid);
-	}
-	ft_putstr_fd("Error : ", 2);
-	ft_putendl_fd(msg, 2);
-	exit(1);
-}
 
 void	print_map(t_map map)
 {

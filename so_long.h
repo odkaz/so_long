@@ -6,7 +6,7 @@
 /*   By: knoda <knoda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 17:33:05 by knoda             #+#    #+#             */
-/*   Updated: 2021/11/22 19:10:00 by knoda            ###   ########.fr       */
+/*   Updated: 2021/11/25 12:50:16 by knoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,21 @@ typedef struct s_mlx_data {
 	void		*mlx;
 	void		*win;
 	void		*img;
-	t_map		map;
+	t_map		*map;
 	int			p_x;
 	int			p_y;
 	int			collective;
 	int			moves;
 }				t_mlx_data;
 
+void	free_grid(t_map *map);
 void	exit_error(char *msg, t_map *map);
 void	print_map(t_map map);
 int		width_count(char *line);
 int		height_count(char *line);
 void	*my_calloc(size_t n, size_t size);
 t_map	*parse(char *path, t_map *map);
-void	put_backgroud(t_map map);
+void	put_backgroud(t_map *map);
 void	*xpm_to_img(char *path, t_mlx_data data);
 void	*get_img(char c, t_mlx_data data);
 char	*get_img_path(char c);
